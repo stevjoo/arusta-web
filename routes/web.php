@@ -25,3 +25,27 @@ Route::get('/video-reels', function () {
 Route::get('/graphic-design', function () {
     return inertia('Portfolio/GraphicDesign');
 });
+
+Route::get('/admin-login', function () {
+    return inertia('Admin/AdminLogin');
+});
+
+Route::get('/admin-behind-the-lense', function () {
+    return inertia('Admin/EditBehindtheLense');
+});
+
+Route::get('/admin-home', function () {
+    return inertia('Admin/EditHome');
+});
+
+Route::get('/admin-photography', function () {
+    return inertia('Admin/EditPortfolio/EditPhotography');
+});
+
+Route::get('/admin-video-reels', function () {
+    return inertia('Admin/EditPortfolio/EditVideoReels');
+});
+
+Route::get('/admin-graphic-design', function () {
+    return inertia('Admin/EditPortfolio/EditGraphicDesign');
+});
