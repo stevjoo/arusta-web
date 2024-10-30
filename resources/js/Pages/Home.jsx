@@ -1,7 +1,7 @@
-export default function Home(){
-    return(
+export default function Home() {
+    return (
         <>
-            <h1>Home Page</h1>
+            <h1 className="text-blue-900 font-black text-5xl">Home</h1>
         </>
-    )
+    );
 }
