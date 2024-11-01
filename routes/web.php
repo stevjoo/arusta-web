@@ -14,6 +14,10 @@ Route::get('/portfolio', function () {
     return inertia('Portfolio/Portfolio');
 });
 
+Route::get('/contact', function () {
+    return inertia('Contact');
+});
+
 Route::get('/photography', function () {
     return inertia('Portfolio/Photography');
 });
