@@ -47,7 +47,7 @@ Route::resource('admin-behind-the-lense', BehindTheLenseController::class)
         'edit' => 'admin-behind-the-lense.edit',
         'update' => 'admin-behind-the-lense.update',
         'destroy' => 'admin-behind-the-lense.destroy',
-    ])->middleware(['auth', 'verified']);
+    ])->middleware(['auth', 'verified', 'admin']);
 
 
 Route::resource('admin-photography', PhotographyController::class)
@@ -59,7 +59,7 @@ Route::resource('admin-photography', PhotographyController::class)
         'adminphotographyedit' => 'admin-photography.edit',
         'adminphotographyupdate' => 'admin-photography.update',
         'adminphotographydestroy' => 'admin-photography.destroy',
-    ])->middleware(['auth', 'verified']);
+    ])->middleware(['auth', 'verified', 'admin']);
 
 
 Route::resource('admin-graphic-design', GraphicDesignController::class)
@@ -71,7 +71,7 @@ Route::resource('admin-graphic-design', GraphicDesignController::class)
         'admingraphicdesignedit' => 'admin-graphic-design.edit',
         'admingraphicdesignupdate' => 'admin-graphic-design.update',
         'admingraphicdesigndestroy' => 'admin-graphic-design.destroy',
-    ])->middleware(['auth', 'verified']);
+    ])->middleware(['auth', 'verified', 'admin']);
 
 
 Route::resource('admin-video-reels', VideoReelsController::class)
@@ -83,6 +83,6 @@ Route::resource('admin-video-reels', VideoReelsController::class)
         'adminvideoreelsedit' => 'admin-video-reels.edit',
         'adminvideoreelsupdate' => 'admin-video-reels.update',
         'adminvideoreelsdestroy' => 'admin-video-reels.destroy',
-    ])->middleware(['auth', 'verified']);
+    ])->middleware(['auth', 'verified', 'admin']);
     
 require __DIR__.'/auth.php';
