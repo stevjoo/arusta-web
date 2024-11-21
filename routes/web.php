@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BehindTheLenseController;
 use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\GraphicDesignController;
-use App\Http\Controllers\VideoReelsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +17,6 @@ Route::get('/admin', function () {
 Route::get('/behind-the-lense', [BehindTheLenseController::class, 'publicIndex'])->name('behind-the-lense.index');
 Route::get('/photography', [PhotographyController::class, 'publicIndex'])->name('photography.index');
 Route::get('/graphic-design', [GraphicDesignController::class, 'publicIndex'])->name('graphic-design.index');
-Route::get('/video-reels', [VideoReelsController::class, 'publicIndex'])->name('video-reels.index');
 
 Route::get('/portfolio', function(){
     return view('user/portfolio');
@@ -71,18 +69,6 @@ Route::resource('admin-graphic-design', GraphicDesignController::class)
         'admingraphicdesignedit' => 'admin-graphic-design.edit',
         'admingraphicdesignupdate' => 'admin-graphic-design.update',
         'admingraphicdesigndestroy' => 'admin-graphic-design.destroy',
-    ])->middleware(['auth', 'verified', 'admin']);
-
-
-Route::resource('admin-video-reels', VideoReelsController::class)
-    ->names([
-        'adminvideoreelsindex' => 'admin-video-reels.index',
-        'adminvideoreelscreate' => 'admin-video-reels.create',
-        'adminvideoreelsstore' => 'admin-video-reels.store',
-        'adminvideoreelsshow' => 'admin-video-reels.show',
-        'adminvideoreelsedit' => 'admin-video-reels.edit',
-        'adminvideoreelsupdate' => 'admin-video-reels.update',
-        'adminvideoreelsdestroy' => 'admin-video-reels.destroy',
     ])->middleware(['auth', 'verified', 'admin']);
     
 require __DIR__.'/auth.php';
