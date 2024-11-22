@@ -1,3 +1,4 @@
+// admin.blade.php
 @extends('layouts.app')
 
 @section('title', 'Graphic Design')
@@ -15,5 +16,22 @@
             <a href="/admin-graphic-design">Graphic Design</a>
             <a href="/admin-behind-the-lense">Behind the Lense</a>
         </div>
+
+        @foreach ($users as $user)
+        <div>
+            {{ $user->name }}
+            @if (!auth()->user()->isAdmin() || !auth()->user()->is($user))
+                @if (!$user->isAdmin())
+                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                @else
+                    <span>Cannot delete admin</span>
+                @endif
+            @endif
+        </div>
+        @endforeach
     </header>
 @endsection

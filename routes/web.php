@@ -4,15 +4,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BehindTheLenseController;
 use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\GraphicDesignController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('user/dashboard');
 })->name('dashboard');
 
-Route::get('/admin', function () {
-    return view('admin/admin');
-})->middleware(['auth', 'verified', 'admin'])->name('admin');
+Route::get('/admin', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('admin');
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
 
 Route::get('/behind-the-lense', [BehindTheLenseController::class, 'publicIndex'])->name('behind-the-lense.index');
 Route::get('/photography', [PhotographyController::class, 'publicIndex'])->name('photography.index');
@@ -71,4 +71,6 @@ Route::resource('admin-graphic-design', GraphicDesignController::class)
         'admingraphicdesigndestroy' => 'admin-graphic-design.destroy',
     ])->middleware(['auth', 'verified', 'admin']);
     
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
+
 require __DIR__.'/auth.php';
