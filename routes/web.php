@@ -5,6 +5,7 @@ use App\Http\Controllers\BehindTheLenseController;
 use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\GraphicDesignController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,6 +14,13 @@ Route::get('/', function () {
 
 Route::get('/admin', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('admin');
 Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
+Route::get('/review',[ReviewController::class, 'form_view'])->name('review.view');
+Route::post('/review-store', [ReviewController::class, 'reviewstore'])->middleware('auth')->name('review.store');
+
+
+Route::get('/admin', function () {
+    return view('admin/admin');
+})->middleware(['auth', 'verified', 'admin'])->name('admin');
 
 Route::get('/behind-the-lense', [BehindTheLenseController::class, 'publicIndex'])->name('behind-the-lense.index');
 Route::get('/photography', [PhotographyController::class, 'publicIndex'])->name('photography.index');
