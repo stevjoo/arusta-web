@@ -5,6 +5,7 @@ use App\Http\Controllers\BehindTheLenseController;
 use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\GraphicDesignController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,51 +27,44 @@ Route::get('/schedule', function(){
     return view('user/schedule');
 })->name('schedule');
 
-// Route::get('/admin', function () {
-//     return view('admin');
-// })->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin/events', [EventController::class, 'adminIndex'])->middleware(['auth', 'verified', 'admin'])->name('admin.events');
 
+Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
+Route::resource('events', EventController::class);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('admin-behind-the-lense', BehindTheLenseController::class)
-    ->names([
-        'index' => 'admin-behind-the-lense.index',
-        'create' => 'admin-behind-the-lense.create',
-        'store' => 'admin-behind-the-lense.store',
-        'show' => 'admin-behind-the-lense.show',
-        'edit' => 'admin-behind-the-lense.edit',
-        'update' => 'admin-behind-the-lense.update',
-        'destroy' => 'admin-behind-the-lense.destroy',
-    ])->middleware(['auth', 'verified', 'admin']);
+Route::resource('admin-behind-the-lense', BehindTheLenseController::class)->middleware(['auth', 'verified', 'admin'])->names([
+    'index' => 'admin-behind-the-lense.index',
+    'create' => 'admin-behind-the-lense.create',
+    'store' => 'admin-behind-the-lense.store',
+    'show' => 'admin-behind-the-lense.show',
+    'edit' => 'admin-behind-the-lense.edit',
+    'update' => 'admin-behind-the-lense.update',
+    'destroy' => 'admin-behind-the-lense.destroy',
+]);
 
+Route::resource('admin-photography', PhotographyController::class)->middleware(['auth', 'verified', 'admin'])->names([
+    'index' => 'admin-photography.index',
+    'create' => 'admin-photography.create',
+    'store' => 'admin-photography.store',
+    'show' => 'admin-photography.show',
+    'edit' => 'admin-photography.edit',
+    'update' => 'admin-photography.update',
+    'destroy' => 'admin-photography.destroy',
+]);
 
-Route::resource('admin-photography', PhotographyController::class)
-    ->names([
-        'adminphotographyindex' => 'admin-photography.index',
-        'adminphotographycreate' => 'admin-photography.create',
-        'adminphotographystore' => 'admin-photography.store',
-        'adminphotographyshow' => 'admin-photography.show',
-        'adminphotographyedit' => 'admin-photography.edit',
-        'adminphotographyupdate' => 'admin-photography.update',
-        'adminphotographydestroy' => 'admin-photography.destroy',
-    ])->middleware(['auth', 'verified', 'admin']);
-
-
-Route::resource('admin-graphic-design', GraphicDesignController::class)
-    ->names([
-        'admingraphicdesignindex' => 'admin-graphic-design.index',
-        'admingraphicdesigncreate' => 'admin-graphic-design.create',
-        'admingraphicdesignstore' => 'admin-graphic-design.store',
-        'admingraphicdesignshow' => 'admin-graphic-design.show',
-        'admingraphicdesignedit' => 'admin-graphic-design.edit',
-        'admingraphicdesignupdate' => 'admin-graphic-design.update',
-        'admingraphicdesigndestroy' => 'admin-graphic-design.destroy',
-    ])->middleware(['auth', 'verified', 'admin']);
-    
-Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
+Route::resource('admin-graphic-design', GraphicDesignController::class)->middleware(['auth', 'verified', 'admin'])->names([
+    'index' => 'admin-graphic-design.index',
+    'create' => 'admin-graphic-design.create',
+    'store' => 'admin-graphic-design.store',
+    'show' => 'admin-graphic-design.show',
+    'edit' => 'admin-graphic-design.edit',
+    'update' => 'admin-graphic-design.update',
+    'destroy' => 'admin-graphic-design.destroy',
+]);
 
 require __DIR__.'/auth.php';

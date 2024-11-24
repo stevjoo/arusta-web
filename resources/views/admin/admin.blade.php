@@ -1,7 +1,6 @@
-// admin.blade.php
 @extends('layouts.app')
 
-@section('title', 'Graphic Design')
+@section('title', 'Admin Dashboard')
 
 @section('header')
     <header class="bg-white shadow">
@@ -14,7 +13,7 @@
             <a href="/admin-behind-the-lense">Behind the Lense</a>
             <a href="/admin-photography">Photography</a>
             <a href="/admin-graphic-design">Graphic Design</a>
-            <a href="/admin-behind-the-lense">Behind the Lense</a>
+            <a href="/admin/events">Event Management</a>
         </div>
 
         @foreach ($users as $user)
