@@ -14,10 +14,11 @@ Route::get('/', function () {
 
 Route::get('/admin', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('admin');
 Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
+
 Route::get('/review',[ReviewController::class, 'form_view'])->name('review.view');
 Route::post('/review-store', [ReviewController::class, 'reviewstore'])->middleware('auth')->name('review.store');
-
-
+Route::post('/review/update/{id}', [ReviewController::class, 'update'])->middleware('auth')->name('review.update');
+Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->middleware('auth')->name('review.destroy');
 Route::get('/admin', function () {
     return view('admin/admin');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');

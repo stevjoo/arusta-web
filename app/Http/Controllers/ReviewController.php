@@ -10,40 +10,74 @@ class ReviewController extends Controller
 {
     public function reviewstore(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
             'comment' => 'required|string|max:500',
             'rating' => 'required|integer|between:1,5',
         ]);
 
-        // Create a new review
         $review = new Review();
         $review->comments = $request->comment;
         $review->star_rating = $request->rating;
-        $review->user_id = Auth::id(); // Authenticated user's ID
+        $review->user_id = Auth::id();
+        $review->status = 'active';
         $review->save();
 
-        // Retrieve the user's name
-        $userName = $review->user->name;
-
-        // Redirect back with message, review, and userName
-        return redirect()->back()->with([
-            'success' => 'Review added successfully!',
-            'review' => $review,
-            'userName' => $userName,
-        ]);
+        return redirect()->back()->with('success', 'Review added successfully!');
     }
 
     public function form_view()
     {
-    // Fetch all reviews with user information
         $reviews = Review::with('user')->latest()->get();
-
-        // Check if the authenticated user has already submitted a review
         $userReview = Auth::check() ? Review::where('user_id', Auth::id())->first() : null;
-
         return view('user/testimoni', compact('reviews', 'userReview'));
     }
 
-}
+    public function edit(Request $request, $id)
+    {
+        $review = Review::findOrFail($id);
+        
+        // Check if user owns this review
+        if (Auth::id() !== $review->user_id) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
 
+        return redirect()->route('review.view')
+            ->with('editing', $id)
+            ->with('oldReview', $review);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $review = Review::findOrFail($id);
+        
+        // Check if user owns this review
+        if (Auth::id() !== $review->user_id) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+    
+        $request->validate([
+            'comment' => 'required|string|max:500',
+            'rating' => 'required|integer|between:1,5',
+        ]);
+    
+        $review->comments = $request->comment;
+        $review->star_rating = $request->rating;
+        $review->save();
+    
+        return redirect()->back()->with('success', 'Review updated successfully!');
+    }
+    
+    public function destroy($id)
+    {
+        $review = Review::findOrFail($id);
+        
+        // Check if user owns this review
+        if (Auth::id() !== $review->user_id) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+    
+        $review->delete();
+        return redirect()->back()->with('success', 'Review deleted successfully!');
+    }
+    
+}

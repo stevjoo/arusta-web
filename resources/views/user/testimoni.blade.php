@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit a Review</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <!-- Add Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
         .star-rating {
             font-size: 1.5rem;
@@ -23,6 +25,25 @@
         }
         .star-rating label:hover,
         .star-rating label:hover ~ label {
+            color: #ffc107;
+        }
+        .review-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .modal-star-rating {
+            direction: ltr;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            font-size: 24px;
+        }
+        .modal-star-rating i {
+            cursor: pointer;
+            color: #ddd;
+        }
+        .modal-star-rating i.active {
             color: #ffc107;
         }
     </style>
@@ -45,6 +66,22 @@
                 <p><strong>Your Review:</strong></p>
                 <p>Rating: {{ $userReview->star_rating }} stars</p>
                 <p>{{ $userReview->comments }}</p>
+
+                @if(Auth::check() && Auth::id() == $userReview->user_id)
+                    <div class="mt-3 d-flex justify-content-center">
+                        <button class="btn btn-warning me-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editReviewModal{{ $userReview->id }}">
+                            <i class="bi bi-pencil"></i> Edit
+                        </button>
+                        <button class="btn btn-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal{{ $userReview->id }}">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                    </div>
+
+                @endif
             </div>
         @else
             <!-- Error Messages -->
@@ -84,23 +121,131 @@
             </form>
         @endif
 
-        <!-- Display Other Users' Reviews -->
+        <!-- Display Reviews -->
         <div class="mt-5">
             <h3 class="text-center">Reviews from Other Users</h3>
             @if($reviews->isEmpty())
                 <p class="text-center">No reviews yet. Be the first to leave a review!</p>
             @else
-                <ul class="list-group">
+                <div class="row">
                     @foreach($reviews as $review)
-                        <li class="list-group-item">
-                            <p><strong>{{ $review->user->name }}</strong></p>
-                            <p>Rating: {{ $review->star_rating }} stars</p>
-                            <p>{{ $review->comments }}</p>
-                        </li>
+                        <div class="col-md-6 mb-4">
+                            <div class="card position-relative">
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $review->user->name }}</h5>
+                                    <div class="text-warning mb-2">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            @if($i <= $review->star_rating)
+                                                &#9733;
+                                            @else
+                                                &#9734;
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <p class="card-text">{{ $review->comments }}</p>
+                                    <small class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
+                                </div>
+                            </div>
+
+                            <!-- Edit Review Modal -->
+                            <div class="modal fade" id="editReviewModal{{ $review->id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Your Review</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('review.update', $review->id) }}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Rating</label>
+                                                    <div class="modal-star-rating" id="starRating{{ $review->id }}">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            <i class="bi bi-star{{ $i <= $review->star_rating ? '-fill' : '' }}"
+                                                               data-rating="{{ $i }}"></i>
+                                                        @endfor
+                                                    </div>
+                                                    <input type="hidden" name="rating" id="ratingInput{{ $review->id }}" 
+                                                           value="{{ $review->star_rating }}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Your Review</label>
+                                                    <textarea name="comment" class="form-control" rows="4" 
+                                                              required>{{ $review->comments }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Update Review</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Delete Review Modal -->
+                            <div class="modal fade" id="deleteReviewModal{{ $review->id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Review</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this review? This action cannot be undone.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <form action="{{ route('review.destroy', $review->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete Review</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
             @endif
         </div>
     </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Star Rating Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle star rating in edit modals
+            document.querySelectorAll('.modal-star-rating').forEach(function(ratingContainer) {
+                const reviewId = ratingContainer.id.replace('starRating', '');
+                const stars = ratingContainer.querySelectorAll('i');
+                const ratingInput = document.getElementById('ratingInput' + reviewId);
+
+                stars.forEach(function(star) {
+                    star.addEventListener('click', function() {
+                        const rating = this.dataset.rating;
+                        ratingInput.value = rating;
+                        
+                        stars.forEach(function(s) {
+                            if (s.dataset.rating <= rating) {
+                                s.classList.remove('bi-star');
+                                s.classList.add('bi-star-fill');
+                            } else {
+                                s.classList.remove('bi-star-fill');
+                                s.classList.add('bi-star');
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
