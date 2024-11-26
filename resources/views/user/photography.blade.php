@@ -14,6 +14,7 @@
 
 @section('content')
 <div class="container">
+    <a href="/portfolio">Back</a>
     <div class="row">
         @foreach ($photos as $photo)
             <div class="col-md-4">
