@@ -30,7 +30,9 @@ class EventController extends Controller
 
     Log::info('Converted Dates:', ['start' => $start, 'end' => $end]);
 
-    $events = Event::where('start_date', '>=', $start)
+    // Filter hanya menampilkan event yang 'approved'
+    $events = Event::where('status', 'approved')
+        ->where('start_date', '>=', $start)
         ->where('end_date', '<=', $end)
         ->get()
         ->map(fn ($item) => [
@@ -44,15 +46,23 @@ class EventController extends Controller
 
     return response()->json($events);
 }
+
     public function create(Event $event)
     {
         return view('event-form', ['data' => $event, 'action' => route('events.store')]);
     }
 
-    public function store(EventRequest $request, Event $event)
-    {
-        return $this->update($request, $event);
-    }
+    public function store(EventRequest $request)
+{
+    $event = new Event;
+    $event->title = $request->title;
+    $event->start_date = $request->start_date;
+    $event->end_date = $request->end_date;
+    $event->category = 'pending';
+    $event->save();
+
+    return redirect()->route('dashboard')->with('status', 'Reservation submitted, pending approval');
+}
 
     public function edit(Event $event)
     {
@@ -84,4 +94,14 @@ class EventController extends Controller
             'message' => 'Delete data successfully'
         ]);
     }
+
+    public function approve($id)
+{
+    $event = Event::findOrFail($id);
+    $event->status = 'approved';
+    $event->save();
+
+    return redirect()->route('admin.events')->with('status', 'Event approved successfully');
+}
+
 }

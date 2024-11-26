@@ -28,6 +28,7 @@ Route::get('/schedule', function(){
 })->name('schedule');
 
 Route::get('/admin/events', [EventController::class, 'adminIndex'])->middleware(['auth', 'verified', 'admin'])->name('admin.events');
+Route::patch('/admin/events/{id}/approve', [EventController::class, 'approve'])->name('events.approve')->middleware(['auth', 'admin']);
 
 Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 Route::resource('events', EventController::class);
@@ -36,6 +37,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Hanya user yang terautentikasi yang dapat mengakses formulir dan fungsi untuk mendaftar event
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+    Route::post('events', [EventController::class, 'store'])->name('events.store');
+    Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('events/{event}', [EventController::class, 'update'])->name('events.update');
+});
+
 
 Route::resource('admin-behind-the-lense', BehindTheLenseController::class)->middleware(['auth', 'verified', 'admin'])->names([
     'index' => 'admin-behind-the-lense.index',
