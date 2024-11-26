@@ -19,13 +19,13 @@
                                 {{ __('Admin Dashboard') }}
                             </x-nav-link>
                             <x-nav-link :href="route('admin-behind-the-lense.index')" :active="request()->routeIs('admin-behind-the-lense.*')">
-                                {{ __('Behind the Lense') }}
+                                {{ __('Admin Behind the Lense') }}
                             </x-nav-link>
                             <x-nav-link :href="route('admin-photography.index')" :active="request()->routeIs('admin-photography.*')">
-                                {{ __('Photography') }}
+                                {{ __('Admin Photography') }}
                             </x-nav-link>
                             <x-nav-link :href="route('admin-graphic-design.index')" :active="request()->routeIs('admin-graphic-design.*')">
-                                {{ __('Graphic Design') }}
+                                {{ __('Admin Graphic Design') }}
                             </x-nav-link>
                         @else
                             <!-- User Links -->

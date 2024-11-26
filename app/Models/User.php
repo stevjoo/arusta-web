@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->role === 1;
     }
+    
+    public function getRoleName()
+    {
+        return $this->role == 1 ? 'Admin' : 'User';
+    }
 }

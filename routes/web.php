@@ -72,5 +72,7 @@ Route::resource('admin-graphic-design', GraphicDesignController::class)
     ])->middleware(['auth', 'verified', 'admin']);
     
 Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit')->middleware(['auth', 'verified', 'admin']);
+Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update')->middleware(['auth', 'verified', 'admin']);
 
 require __DIR__.'/auth.php';
