@@ -16,7 +16,6 @@
     <div class="mt-4 mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg">
             <div class="p-6">
-                <!-- Responsive table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-black">
@@ -66,7 +65,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Pagination Links -->
                 <div class="mt-4">
                     {{ $users->links() }}
                 </div>
