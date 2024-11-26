@@ -30,7 +30,6 @@ class EventController extends Controller
 
     Log::info('Converted Dates:', ['start' => $start, 'end' => $end]);
 
-    // Filter hanya menampilkan event yang 'approved'
     $events = Event::where('status', 'approved')
         ->where('start_date', '>=', $start)
         ->where('end_date', '<=', $end)

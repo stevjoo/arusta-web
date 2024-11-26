@@ -32,15 +32,15 @@
     <script>
         const modal = $('#modal-action');
         const csrfToken = $('meta[name=csrf_token]').attr('content');
-        const isLoggedIn = @json(auth()->check()); // Menentukan apakah user sudah login
+        const isLoggedIn = @json(auth()->check());
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 themeSystem: 'bootstrap5',
-                events: `{{ route('events.list') }}`, // Menampilkan event yang sudah di-approve
-                editable: false, // Public tidak boleh mengedit event
+                events: `{{ route('events.list') }}`,
+                editable: false,
                 dateClick: function (info) {
                     if (isLoggedIn) {
                         $.ajax({
@@ -83,7 +83,7 @@
                             message: 'Please log in to register an event.',
                             position: 'topRight'
                         });
-                        window.location.href = '/login'; // Redirect ke halaman login
+                        window.location.href = '/login';
                     }
                 },
             });

@@ -31,7 +31,6 @@
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                         </form>
                         @if($event->status === 'pending')
-                        <!-- Tombol untuk approve event -->
                         <form action="{{ route('events.approve', $event->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('PATCH')
