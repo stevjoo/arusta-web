@@ -10,7 +10,7 @@ class UserController extends Controller
     // Menampilkan semua pengguna
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::with('review')->paginate(10);
         return view('admin.admin', compact('users'));
     }
 
