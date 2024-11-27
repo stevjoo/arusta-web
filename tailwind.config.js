@@ -17,8 +17,18 @@ export default {
             colors: {
                 darkgray: "#2B2B2B",
             },
+            animation: {
+                'scroll-auto': 'scrollAuto 20s linear infinite',
+              },
+              keyframes: {
+                scrollAuto: {
+                  '0%': { transform: 'translateX(0)' },
+                  '100%': { transform: 'translateX(-100%)' },
+                },
+              },
         },
     },
 
     plugins: [forms],
+    
 };
