@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     public function reviewstore(Request $request)
-    {
+{
+    // Check if user is admin
+        if (Auth::user()->role === 1) {
+            return redirect()->back()->with('error', 'Administrators are not allowed to submit reviews.');
+        }
+
         $request->validate([
             'comment' => 'required|string|max:500',
             'rating' => 'required|integer|between:1,5',
@@ -28,7 +33,10 @@ class ReviewController extends Controller
     public function form_view()
     {
         $reviews = Review::with('user')->latest()->get();
-        $userReview = Auth::check() ? Review::where('user_id', Auth::id())->first() : null;
+        // Don't show personal review for admin users
+        $userReview = Auth::check() && Auth::user()->role !== 1 
+            ? Review::where('user_id', Auth::id())->first() 
+            : null;
         return view('user/testimoni', compact('reviews', 'userReview'));
     }
 
@@ -50,20 +58,20 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
         
-        // Check if user owns this review
-        if (Auth::id() !== $review->user_id) {
+        // Check if user is admin or doesn't own the review
+        if (Auth::user()->role === 1 || Auth::id() !== $review->user_id) {
             return redirect()->back()->with('error', 'Unauthorized action.');
         }
-    
+
         $request->validate([
             'comment' => 'required|string|max:500',
             'rating' => 'required|integer|between:1,5',
         ]);
-    
+
         $review->comments = $request->comment;
         $review->star_rating = $request->rating;
         $review->save();
-    
+
         return redirect()->back()->with('success', 'Review updated successfully!');
     }
     
@@ -72,7 +80,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         
         // Check if user owns this review
-        if (Auth::id() !== $review->user_id) {
+        if (Auth::id() !== $review->user_id && Auth::user()->role !== 1) {
             return redirect()->back()->with('error', 'Unauthorized action.');
         }
     

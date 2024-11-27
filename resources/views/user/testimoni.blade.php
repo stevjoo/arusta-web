@@ -95,7 +95,8 @@
                 </div>
             @endif
 
-            <!-- Review Form -->
+            @if(Auth::check() && Auth::user()->role !== 1)
+                <!-- Review Form -->
             <form action="{{ route('review.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -119,13 +120,26 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Review</button>
             </form>
+            @elseif(Auth::check() && Auth::user()->role === 1)
+                <div class="alert alert-info text-center">
+                    <p>As an administrator, you cannot submit reviews.</p>
+                </div>
+            @endif
+
+            
         @endif
 
         <!-- Display Reviews -->
         <div class="mt-5">
             <h3 class="text-center">Reviews from Other Users</h3>
             @if($reviews->isEmpty())
-                <p class="text-center">No reviews yet. Be the first to leave a review!</p>
+                @if(!Auth::check())
+                    <p class="text-center">No reviews yet. Please <a href="{{ route('login') }}" class="text-primary">login</a> to leave a review!</p>
+                @elseif(Auth::user()->role === 1)
+                    <p class="text-center">No reviews yet. As an administrator, you cannot submit reviews.</p>
+                @else
+                    <p class="text-center">No reviews yet. Be the first to leave a review!</p>
+                @endif
             @else
                 <div class="row">
                     @foreach($reviews as $review)
