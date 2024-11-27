@@ -31,6 +31,10 @@ Route::get('/portfolio', function(){
     return view('user/portfolio');
 })->name('portfolio');
 
+Route::get('/price-list', function(){
+    return view('user/price');
+})->name('price');
+
 Route::get('/schedule', function(){
     return view('user/schedule');
 })->name('schedule');
