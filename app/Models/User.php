@@ -46,11 +46,31 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Check if the user is an admin.
+     *
+     * @return bool
+     */
     public function isAdmin()
     {
         return $this->role === 1;
     }
-    
+
+    /**
+     * Define a relationship with the Review model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
+
+    /**
+     * Get the role name of the user.
+     *
+     * @return string
+     */
     public function getRoleName()
     {
         return $this->role == 1 ? 'Admin' : 'User';
