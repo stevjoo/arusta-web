@@ -1,5 +1,7 @@
-@section('title', 'Schedule')
+@extends('layouts.app')
 
-<div>
-    <h1>Schedule</h1>
-</div>
+@section('title', 'Price')
+
+@section('content')
+    <h1 class="text-white">Schedule</h1>
+@endsection

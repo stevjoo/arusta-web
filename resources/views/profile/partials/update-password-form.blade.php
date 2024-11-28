@@ -1,6 +1,6 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-100">
+        <h2 class="text-lg font-medium text-white">
             {{ __('Update Password') }}
         </h2>
 
@@ -14,7 +14,7 @@
         @method('put')
 
         <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" class="text-gray-100" />
+            <x-input-label for="update_password_current_password" :value="__('Current Password')" class="text-white" />
             <x-text-input
                 id="update_password_current_password"
                 name="current_password"
@@ -26,7 +26,7 @@
         </div>
 
         <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" class="text-gray-100" />
+            <x-input-label for="update_password_password" :value="__('New Password')" class="text-white" />
             <x-text-input
                 id="update_password_password"
                 name="password"
@@ -38,7 +38,7 @@
         </div>
 
         <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" class="text-gray-100" />
+            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" class="text-white" />
             <x-text-input
                 id="update_password_password_confirmation"
                 name="password_confirmation"

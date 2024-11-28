@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-100">
+        <h2 class="text-lg font-medium text-white">
             {{ __('Profile Information') }}
         </h2>
 
@@ -18,13 +18,13 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" class="text-gray-100"/>
+            <x-input-label for="name" :value="__('Name')" class="text-white"/>
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" class="text-gray-100"/>
+            <x-input-label for="email" :value="__('Email')" class="text-white"/>
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 

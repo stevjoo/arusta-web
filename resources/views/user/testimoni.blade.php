@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Portfolio')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +55,13 @@
 </head>
 <body>
     <div class="container mt-5">
+        @auth
+        @if(auth()->user()->isAdmin())
+        <h1></h1>
+        @else
         <h2 class="text-center mb-4">Submit Your Review</h2>
+        @endif
+        @endauth
 
         <!-- Success Message -->
         @if(session('success'))
@@ -263,3 +274,5 @@
     </script>
 </body>
 </html>
+
+@endsection
