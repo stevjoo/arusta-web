@@ -30,7 +30,7 @@
                             <!-- User View Dropdown -->
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="mt-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="mt-4 inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md bg-transparant border border-white text-white hover:bg-neutral-900 focus:outline-none transition ease-in-out duration-150">
                                         <h1>User</h1>
                                         <div class="ml-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -112,7 +112,7 @@
             <div class="hidden md:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md bg-transparant border border-white text-white hover:bg-neutral-900 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
