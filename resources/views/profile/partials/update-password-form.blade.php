@@ -19,7 +19,7 @@
                 id="update_password_current_password"
                 name="current_password"
                 type="password"
-                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-white"
                 autocomplete="current-password"
             />
             <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2 text-red-500" />
@@ -31,7 +31,7 @@
                 id="update_password_password"
                 name="password"
                 type="password"
-                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-white focus:border-white"
                 autocomplete="new-password"
             />
             <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2 text-red-500" />
@@ -43,7 +43,7 @@
                 id="update_password_password_confirmation"
                 name="password_confirmation"
                 type="password"
-                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="mt-1 block w-full bg-darkgray text-white placeholder-gray-400 rounded-md focus:ring-2 focus:ring-white"
                 autocomplete="new-password"
             />
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2 text-red-500" />
