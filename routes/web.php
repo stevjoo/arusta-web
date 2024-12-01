@@ -32,6 +32,7 @@ Route::patch('/admin/events/{id}/approve', [EventController::class, 'approve'])-
 
 Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 Route::resource('events', EventController::class);
+Route::get('events/on/{date}', [EventController::class, 'eventsOnDate'])->name('events.onDate');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

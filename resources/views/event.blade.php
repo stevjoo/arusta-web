@@ -34,62 +34,78 @@
         const csrfToken = $('meta[name=csrf_token]').attr('content');
         const isLoggedIn = @json(auth()->check());
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                themeSystem: 'bootstrap5',
-                events: `{{ route('events.list') }}`,
-                editable: false,
-                dateClick: function (info) {
-                    if (isLoggedIn) {
-                        $.ajax({
-                            url: `{{ route('events.create') }}`,
-                            data: {
-                                start_date: info.dateStr,
-                                end_date: info.dateStr,
-                            },
-                            success: function (res) {
-                                modal.html(res).modal('show');
-                                $('.datepicker').datepicker({
-                                    todayHighlight: true,
-                                    format: 'yyyy-mm-dd'
-                                });
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            themeSystem: 'bootstrap5',
+            events: `{{ route('events.list') }}`,
+            editable: false,
+            dateClick: function (info) {
+                $.ajax({
+                    url: `{{ route('events.list') }}`,
+                    data: {
+                        date: info.dateStr
+                    },
+                    success: function (res) {
+                        modal.html(res).modal('show');
 
-                                $('#form-action').on('submit', function (e) {
-                                    e.preventDefault();
-                                    const form = this;
-                                    const formData = new FormData(form);
-                                    $.ajax({
-                                        url: form.action,
-                                        method: form.method,
-                                        data: formData,
-                                        processData: false,
-                                        contentType: false,
-                                        success: function (res) {
-                                            modal.modal('hide');
-                                            calendar.refetchEvents();
-                                        },
-                                        error: function (res) {
-                                            console.error("AJAX error:", res);
-                                        }
-                                    });
+                        $('#register-event-btn').on('click', function () {
+                            if (isLoggedIn) {
+                                $.ajax({
+                                    url: `{{ route('events.create') }}`,
+                                    data: {
+                                        start_date: info.dateStr,
+                                        end_date: info.dateStr,
+                                    },
+                                    success: function (res) {
+                                        modal.html(res).modal('show');
+                                        $('.datepicker').datepicker({
+                                            todayHighlight: true,
+                                            format: 'yyyy-mm-dd'
+                                        });
+
+                                        $('#form-action').on('submit', function (e) {
+                                            e.preventDefault();
+                                            const form = this;
+                                            const formData = new FormData(form);
+                                            $.ajax({
+                                                url: form.action,
+                                                method: form.method,
+                                                data: formData,
+                                                processData: false,
+                                                contentType: false,
+                                                success: function (res) {
+                                                    modal.modal('hide');
+                                                    calendar.refetchEvents();
+                                                },
+                                                error: function (res) {
+                                                    console.error("AJAX error:", res);
+                                                }
+                                            });
+                                        });
+                                    },
                                 });
-                            },
+                            } else {
+                                iziToast.warning({
+                                    title: 'Login Required',
+                                    message: 'Please log in to register an event.',
+                                    position: 'topRight'
+                                });
+                                window.location.href = '/login';
+                            }
                         });
-                    } else {
-                        iziToast.warning({
-                            title: 'Login Required',
-                            message: 'Please log in to register an event.',
-                            position: 'topRight'
-                        });
-                        window.location.href = '/login';
+                    },
+                    error: function (res) {
+                        console.error("AJAX error:", res);
                     }
-                },
-            });
-
-            calendar.render();
+                });
+            },
         });
+
+        calendar.render();
+    });
+
     </script>
 </body>
 </html>

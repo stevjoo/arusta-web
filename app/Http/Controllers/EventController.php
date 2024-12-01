@@ -20,31 +20,48 @@ class EventController extends Controller
     $events = Event::all();
     return view('admin.events', compact('events'));
 }
-   public function listEvent(Request $request)
+
+public function listEvent(Request $request)
 {
-    Log::info('Request Start:', ['start' => $request->start]);
-    Log::info('Request End:', ['end' => $request->end]);
+    $start = $request->start ? date('Y-m-d', strtotime($request->start)) : null;
+    $end = $request->end ? date('Y-m-d', strtotime($request->end)) : null;
+    $date = $request->date ? date('Y-m-d', strtotime($request->date)) : null;
 
-    $start = date('Y-m-d', strtotime($request->start));
-    $end = date('Y-m-d', strtotime($request->end));
+    if ($date) {
+        $events = Event::where('status', 'approved')
+            ->where('start_date', '<=', $date)
+            ->where('end_date', '>=', $date)
+            ->get();
 
-    Log::info('Converted Dates:', ['start' => $start, 'end' => $end]);
+        return view('events-on-date', ['events' => $events, 'date' => $date]);
+    } else {
+        $events = Event::where('status', 'approved')
+            ->where('start_date', '>=', $start)
+            ->where('end_date', '<=', $end)
+            ->get()
+            ->map(fn ($item) => [
+                'id' => $item->id,
+                'title' => $item->title,
+                'start' => $item->start_date,
+                'end' => date('Y-m-d', strtotime($item->end_date . '+1 days')),
+                'category' => $item->category,
+                'className' => ['bg-' . $item->category],
+            ]);
 
-    $events = Event::where('status', 'approved')
-        ->where('start_date', '>=', $start)
-        ->where('end_date', '<=', $end)
-        ->get()
-        ->map(fn ($item) => [
-            'id' => $item->id,
-            'title' => $item->title,
-            'start' => $item->start_date,
-            'end' => date('Y-m-d', strtotime($item->end_date . '+1 days')),
-            'category' => $item->category,
-            'className' => ['bg-' . $item->category],
-        ]);
-
-    return response()->json($events);
+        return response()->json($events);
+    }
 }
+
+public function eventsOnDate($date)
+{
+    $events = Event::where('status', 'approved')
+        ->where('start_date', '<=', $date)
+        ->where('end_date', '>=', $date)
+        ->get();
+
+    return view('events-on-date', compact('events', 'date'));
+}
+
 
     public function create(Event $event)
     {
