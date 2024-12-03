@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('title', 'Portfolio')
 
@@ -133,7 +133,7 @@
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                 @foreach($reviews as $review)
-                    <div class="border rounded-lg shadow-lg p-6 transition-shadow hover:shadow-xl">
+                    <div class="border bg-white rounded-lg shadow-lg p-6 transition-shadow hover:shadow-xl">
                         <!-- Review Header -->
                         <div class="flex justify-between items-start mb-4">
                             <div>

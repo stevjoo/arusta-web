@@ -3,17 +3,17 @@
 <div class="modal-dialog">
     <form id="form-action" action="{{ $action }}" method="post">
         @csrf
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content text-white" style="background-color: #2b2b2b;">
+        <div class="modal-header text-white" style="background-color: #2b2b2b;">
+            <h5 class="modal-title text-white" style="background-color: #2b2b2b;">Register Event Dates</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
         </div>
         <div class="modal-body">
             {{ $slot }}
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            <button type="submit" class="btn btn-outline-light">Save changes</button>
         </div>
         </div>
     </form>

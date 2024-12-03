@@ -10,12 +10,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Calendar</title>
+    <style>
+        .fc{
+            border: 2px solid #ffffff !important;
+            border-radius: 5px;
+        }
+
+        #link{
+            color: #ffffff;
+        }
+
+        #link:hover{
+            color: #ffffff80;
+        }
+
+        #fc-dom-1{
+            margin-top: 20px;
+        }
+
+        .fc-prev-button, .fc-next-button {
+            margin-top: 20px;
+            background-color: #000000 !important;
+            color: white !important; 
+            border: 2px solid #ffffff !important; 
+            border-radius: 5px; 
+        }
+
+        .fc-next-button{
+            margin-right: 10px;
+        }
+
+        .fc-prev-button:hover, .fc-next-button:hover {
+            background-color: #333333 !important;
+            border-color: #ffffff !important; 
+        }
+
+        .fc-day-today{
+            background-color: #ffffff25 !important;
+        }
+
+        .fc-scrollgrid-section-header{
+            background-color: #ffffff;
+            color:#000000
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
+<body class="bg-black">
+    <div class="container py-5 px-2">
+        <a href="./event" id="link" class="fs-5">← Back</a>
         <div class="row">
             <div class="col-12 mt-3">
-                <div id='calendar'></div>
+                <div id='calendar' class="bg-black text-white"></div>
             </div>
         </div>
     </div>
@@ -41,6 +86,11 @@
             themeSystem: 'bootstrap5',
             events: `{{ route('events.list') }}`,
             editable: false,
+            headerToolbar: {
+                left: '',  
+                center: 'title',    
+                right: 'prev,next'
+            },
             dateClick: function (info) {
                 $.ajax({
                     url: `{{ route('events.list') }}`,

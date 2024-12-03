@@ -5,37 +5,34 @@
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
+                <div class="text-xs">Start Date</div>
                 <input type="text" name="start_date" readonly value="{{ $data->start_date ?? request()->start_date }}" class="form-control datepicker">
             </div>
         </div>
         <div class="col-6">
             <div class="mb-3">
+                <div class="text-xs">End Date</div>
                 <input type="text" name="end_date" readonly value="{{ $data->end_date ?? request()->end_date }}" class="form-control datepicker">
             </div>
         </div>
         <div class="col-12">
             <div class="mb-3">
+                <div class="text-xs">Event Title</div>
                 <textarea name="title" class="form-control">{{ $data->title }}</textarea>
             </div>
         </div>
         <div class="col-12">
-            <div class="mb-3">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" {{ $data->category == 'success' ? 'checked' : null }} type="radio" name="category" id="category-success" value="success">
-                    <label class="form-check-label" for="category-success">Success</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" {{ $data->category == 'danger' ? 'checked' : null }} type="radio" name="category" id="category-danger" value="danger">
-                    <label class="form-check-label" for="category-danger">Danger</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" {{ $data->category == 'warning' ? 'checked' : null }} type="radio" name="category" id="category-warning" value="warning">
-                    <label class="form-check-label" for="category-warning">Warning</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" {{ $data->category == 'info' ? 'checked' : null }} type="radio" name="category" id="category-info" value="info">
-                    <label class="form-check-label" for="category-info">Info</label>
-                  </div>
+             <div class="form-check form-check-inline">
+                <input class="form-check-input" {{ $data->category == 'Paket 1' ? 'checked' : null }} type="radio" name="category" id="category-Paket-1" value="Paket 1">
+                <label class="form-check-label" for="category-Paket-1">Paket 1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" {{ $data->category == 'Paket 2' ? 'checked' : null }} type="radio" name="category" id="category-Paket-2" value="Paket 2">
+                <label class="form-check-label" for="category-Paket-2">Paket 2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" {{ $data->category == 'Paket 3' ? 'checked' : null }} type="radio" name="category" id="category-Paket-3" value="Paket 3">
+                <label class="form-check-label" for="category-Paket-3">Paket 3</label>
             </div>
         </div>
     </div>

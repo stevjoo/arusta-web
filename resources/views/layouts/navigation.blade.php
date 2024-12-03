@@ -18,14 +18,11 @@
                             <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                                 {{ __('Admin Dashboard') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('admin-behind-the-lense.index')" :active="request()->routeIs('admin-behind-the-lense.*')">
-                                {{ __('Admin Behind the Lense') }}
+                            <x-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton.*')">
+                                {{ __('Admin BGP') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('admin-photography.index')" :active="request()->routeIs('admin-photography.*')">
-                                {{ __('Admin Photography') }}
-                            </x-nav-link>
-                            <x-nav-link :href="route('admin-graphic-design.index')" :active="request()->routeIs('admin-graphic-design.*')">
-                                {{ __('Admin Graphic Design') }}
+                            <x-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events.*')">
+                                {{ __('Admin Events') }}
                             </x-nav-link>
                             <!-- User View Dropdown -->
                             <x-dropdown align="right" width="48">
@@ -55,7 +52,7 @@
                                     <x-dropdown-link :href="route('price')" :active="request()->routeIs('price')">
                                         {{ __('User Price') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="route('events')" :active="request()->routeIs('events')">
+                                    <x-dropdown-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
                                         {{ __('User Events') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -77,7 +74,7 @@
                             <x-nav-link :href="route('review.view')" :active="request()->routeIs('review.view')">
                                 {{ __('Review') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                            <x-nav-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
                                 {{ __('Events') }}
                             </x-nav-link>
                         @endif
@@ -100,7 +97,7 @@
                         <x-nav-link :href="route('review.view')" :active="request()->routeIs('review.view')">
                             {{ __('Review') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                        <x-nav-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
                             {{ __('Events') }}
                         </x-nav-link>
                     @endguest
@@ -168,16 +165,13 @@
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                     {{ __('Admin Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin-behind-the-lense.index')" :active="request()->routeIs('admin-behind-the-lense.*')">
-                    {{ __('Admin Behind the Lense') }}
+                <x-responsive-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton.*')">
+                    {{ __('Admin BGP') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin-photography.index')" :active="request()->routeIs('admin-photography.*')">
-                    {{ __('Admin Photography') }}
+                <x-responsive-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events.*')">
+                    {{ __('Admin Events') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin-graphic-design.index')" :active="request()->routeIs('admin-graphic-design.*')">
-                    {{ __('Admin Graphic Design') }}
-                </x-responsive-nav-link>
-                                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('User Dashboard') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('behind-the-lense.index')" :active="request()->routeIs('behind-the-lense.index')">
@@ -192,8 +186,8 @@
                 <x-responsive-nav-link :href="route('price')" :active="request()->routeIs('price')">
                     {{ __('User Price') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                    {{ __('User Schedule') }}
+                <x-responsive-nav-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
+                    {{ __('User Events') }}
                 </x-responsive-nav-link>
             @else
                 <!-- User Responsive Links -->
@@ -212,8 +206,8 @@
                 <x-responsive-nav-link :href="route('price')" :active="request()->routeIs('price')">
                     {{ __('Price') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                    {{ __('Schedule') }}
+                <x-responsive-nav-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
+                    {{ __('Events') }}
                 </x-responsive-nav-link>
             @endif
         @endauth
@@ -234,8 +228,8 @@
                 <x-responsive-nav-link :href="route('price')" :active="request()->routeIs('price')">
                     {{ __('Price') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                    {{ __('Schedule') }}
+                <x-responsive-nav-link :href="route('eventbutton')" :active="request()->routeIs('eventbutton')">
+                    {{ __('Events') }}
                 </x-responsive-nav-link>
         @endguest
     </div>

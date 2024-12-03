@@ -45,7 +45,12 @@ public function listEvent(Request $request)
                 'start' => $item->start_date,
                 'end' => date('Y-m-d', strtotime($item->end_date . '+1 days')),
                 'category' => $item->category,
-                'className' => ['bg-' . $item->category],
+                'className' => match ($item->category) {
+                'Paket 1' => ['bg-success'],
+                'Paket 2' => ['bg-danger'],
+                'Paket 3' => ['bg-warning'],
+                default => ['bg-success'],
+                },
             ]);
 
         return response()->json($events);
@@ -74,7 +79,7 @@ public function eventsOnDate($date)
     $event->title = $request->title;
     $event->start_date = $request->start_date;
     $event->end_date = $request->end_date;
-    $event->category = 'pending';
+    $event->category = $request->category;
     $event->save();
 
     return redirect()->route('dashboard')->with('status', 'Reservation submitted, pending approval');
@@ -82,7 +87,7 @@ public function eventsOnDate($date)
 
     public function edit(Event $event)
     {
-        return view('event-form', ['data' => $event, 'action' => route('events.update', $event->id)]);
+        return view('admin.edit-events', ['data' => $event, 'action' => route('events.update', $event->id)]);
     }
     public function update(EventRequest $request, Event $event)
 {
@@ -105,16 +110,13 @@ public function eventsOnDate($date)
     public function destroy(Event $event)
     {
         $event->delete();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Delete data successfully'
-        ]);
+        return redirect()->route('admin.events')->with('status', 'Event deleted successfully');
     }
 
     public function approve($id)
 {
     $event = Event::findOrFail($id);
-    $event->status = 'approved';
+    $event->status = 'Approved';
     $event->save();
 
     return redirect()->route('admin.events')->with('status', 'Event approved successfully');

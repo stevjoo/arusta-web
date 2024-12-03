@@ -13,10 +13,19 @@ Route::get('/', function () {
     return view('user/dashboard');
 })->name('dashboard');
 
+Route::get('/event', function () {
+    return view('user/eventbutton');
+})->name('eventbutton');
+
+Route::get('/admin-bgp', function () {
+    return view('admin/bgp');
+})->name('adminbgpbutton');
+
 Route::get('/admin', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('admin');
 Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['auth', 'verified', 'admin']);
 Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit')->middleware(['auth', 'verified', 'admin']);
 Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update')->middleware(['auth', 'verified', 'admin']);
+
 
 
 Route::get('/review',[ReviewController::class, 'form_view'])->name('review.view');
@@ -36,8 +45,8 @@ Route::get('/price-list', function(){
     return view('user/price');
 })->name('price');
 
-Route::get('/admin/events', [EventController::class, 'adminIndex'])->middleware(['auth', 'verified', 'admin'])->name('admin.events');
-Route::patch('/admin/events/{id}/approve', [EventController::class, 'approve'])->name('events.approve')->middleware(['auth', 'admin']);
+Route::get('/admin-events', [EventController::class, 'adminIndex'])->middleware(['auth', 'verified', 'admin'])->name('admin-events');
+Route::patch('/admin-events/{id}/approve', [EventController::class, 'approve'])->name('events.approve')->middleware(['auth', 'admin']);
 
 Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 
@@ -48,11 +57,14 @@ Route::resource('events', EventController::class)
         'index' => 'events',
         'create' => 'events.create',
         'store' => 'events.store',
-        'show' => 'events.show',
-        'edit' => 'events.edit',
-        'update' => 'events.update',
-        'destroy' => 'events.destroy',
 ]);
+
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::patch('/events/{event}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+});
+
 
 Route::get('/schedule', function(){
     return view('user/schedule');
