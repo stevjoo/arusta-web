@@ -55,8 +55,8 @@
                                     <x-dropdown-link :href="route('price')" :active="request()->routeIs('price')">
                                         {{ __('User Price') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                                        {{ __('User Schedule') }}
+                                    <x-dropdown-link :href="route('events')" :active="request()->routeIs('events')">
+                                        {{ __('User Events') }}
                                     </x-dropdown-link>
                                 </x-slot>
                             </x-dropdown>
@@ -77,8 +77,8 @@
                             <x-nav-link :href="route('review.view')" :active="request()->routeIs('review.view')">
                                 {{ __('Review') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                                {{ __('Schedule') }}
+                            <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                                {{ __('Events') }}
                             </x-nav-link>
                         @endif
                     @endauth
@@ -100,8 +100,8 @@
                         <x-nav-link :href="route('review.view')" :active="request()->routeIs('review.view')">
                             {{ __('Review') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('schedule')" :active="request()->routeIs('schedule')">
-                            {{ __('Schedule') }}
+                        <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                            {{ __('Events') }}
                         </x-nav-link>
                     @endguest
                 </div>

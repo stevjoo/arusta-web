@@ -6,6 +6,7 @@ use App\Http\Controllers\PhotographyController;
 use App\Http\Controllers\GraphicDesignController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +35,24 @@ Route::get('/portfolio', function(){
 Route::get('/price-list', function(){
     return view('user/price');
 })->name('price');
+
+Route::get('/admin/events', [EventController::class, 'adminIndex'])->middleware(['auth', 'verified', 'admin'])->name('admin.events');
+Route::patch('/admin/events/{id}/approve', [EventController::class, 'approve'])->name('events.approve')->middleware(['auth', 'admin']);
+
+Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
+
+Route::get('events/on/{date}', [EventController::class, 'eventsOnDate'])->name('events.onDate');
+
+Route::resource('events', EventController::class)
+    ->names([
+        'index' => 'events',
+        'create' => 'events.create',
+        'store' => 'events.store',
+        'show' => 'events.show',
+        'edit' => 'events.edit',
+        'update' => 'events.update',
+        'destroy' => 'events.destroy',
+]);
 
 Route::get('/schedule', function(){
     return view('user/schedule');
@@ -79,5 +98,5 @@ Route::resource('admin-graphic-design', GraphicDesignController::class)
         'admingraphicdesignupdate' => 'admin-graphic-design.update',
         'admingraphicdesigndestroy' => 'admin-graphic-design.destroy',
     ])->middleware(['auth', 'verified', 'admin']);
-    
+
 require __DIR__.'/auth.php';
