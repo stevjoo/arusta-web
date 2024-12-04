@@ -1,5 +1,5 @@
 <?php
-
+//Models/User.php
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,6 +64,10 @@ class User extends Authenticatable
     public function review()
     {
         return $this->hasOne(Review::class);
+    }
+    public function registerevent()
+    {
+        return $this->hasMany(Event::class);
     }
 
     /**

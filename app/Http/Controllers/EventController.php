@@ -1,10 +1,12 @@
 <?php
-
+//EventController
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
@@ -16,9 +18,12 @@ class EventController extends Controller
 
     public function adminIndex()
     {
-        $events = Event::all();
-        return view('admin.events', compact('events'));
+    $events = Event::all();
+    $users = User::with('registerevent')->paginate(10);
+
+    return view('admin.events', compact('events', 'users'));
     }
+
 
     public function listEvent(Request $request)
     {
@@ -75,6 +80,7 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         $event = new Event;
+        $event->user_id = Auth::id();
         $event->title = $request->title;
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;

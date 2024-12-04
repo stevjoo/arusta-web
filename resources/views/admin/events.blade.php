@@ -27,6 +27,12 @@
                                 Title
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                Email
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Start Date
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -38,6 +44,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Status
                             </th>
+                            
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Actions
                             </th>
@@ -53,6 +60,12 @@
                                 {{ $event->title }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                                {{ $event->user->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                                {{ $event->user->email }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                                 {{ $event->start_date }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
@@ -64,6 +77,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                                 {{ $event->status }}
                             </td>
+                            
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <a href="{{ route('events.edit', $event->id) }}" class="px-3 py-2.5 me-2 rounded-lg bg-blue-600 text-white hover:bg-blue-800">Edit</a>
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="inline">
