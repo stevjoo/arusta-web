@@ -11,7 +11,10 @@
         <div class="modal-body">
             {{ $slot }}
         </div>
-        <div class="modal-footer">
+        <div class="ms-3">
+            <a target="_blank" href="https://wa.me/+628111396967" class="text-white">Contact Me (+62-811-1396-967)</a>
+        </div>
+        <div class="modal-footer mt-3">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
             <button type="submit" class="btn btn-outline-light">Save changes</button>
         </div>

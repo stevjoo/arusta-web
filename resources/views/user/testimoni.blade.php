@@ -1,6 +1,6 @@
-    @extends('layouts.app')
+@extends('layouts.app')
 
-@section('title', 'Portfolio')
+@section('title', 'Review')
 
 @section('content')
 <!DOCTYPE html>

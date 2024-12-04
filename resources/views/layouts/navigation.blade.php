@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-darkgray border-b-4 border-gray-400">
+<nav x-data="{ open: false }" class="bg-darkgray border-b-4 border-gray-400 text-center">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -18,10 +18,10 @@
                             <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                                 {{ __('Admin Dashboard') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton.*')">
-                                {{ __('Admin BGP') }}
+                            <x-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton')">
+                                {{ __('Admin Photo') }}
                             </x-nav-link>
-                            <x-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events.*')">
+                            <x-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events')">
                                 {{ __('Admin Events') }}
                             </x-nav-link>
                             <!-- User View Dropdown -->
@@ -85,7 +85,7 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('behind-the-lense.index')" :active="request()->routeIs('behind-the-lense.*')">
+                        <x-nav-link :href="route('behind-the-lense.index')" :active="request()->routeIs('behind-the-lense.index')">
                             {{ __('Behind the Lense') }}
                         </x-nav-link>
                         <x-nav-link :href="route('portfolio')" :active="request()->routeIs('portfolio')">
@@ -165,10 +165,10 @@
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                     {{ __('Admin Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton.*')">
-                    {{ __('Admin BGP') }}
+                <x-responsive-nav-link :href="route('adminbgpbutton')" :active="request()->routeIs('adminbgpbutton')">
+                    {{ __('Admin Photo') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events.*')">
+                <x-responsive-nav-link :href="route('admin-events')" :active="request()->routeIs('admin-events')">
                     {{ __('Admin Events') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
