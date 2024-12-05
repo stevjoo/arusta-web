@@ -12,7 +12,7 @@
             {{ $slot }}
         </div>
         <div class="ms-3">
-            <a target="_blank" href="https://wa.me/+628111396967" class="text-white">Contact Me (+62-811-1396-967)</a>
+            <a target="_blank" href="https://wa.me/+628561810555" class="text-white">Contact Me (+628561810555)</a>
         </div>
         <div class="modal-footer mt-3">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
