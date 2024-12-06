@@ -18,13 +18,22 @@ export default {
                 darkgray: "#2B2B2B",
             },
             animation: {
-                'scroll-auto': 'scrollAuto 20s linear infinite',
+                'scroll-auto': 'scrollAuto 90s linear infinite',
+                appear: "appear 0.3s ease-in-out"
               },
               keyframes: {
+                appear: {
+                    "0%": {
+                        opacity: "0",
+                    },
+                    "100%": {
+                        opacity: "1",
+                    },
+                },
                 scrollAuto: {
                   '0%': { transform: 'translateX(0)' },
                   '100%': { transform: 'translateX(-100%)' },
-                },
+                }
               },
         },
     },

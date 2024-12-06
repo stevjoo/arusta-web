@@ -16,10 +16,9 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black"></div> <!-- Dark overlay -->
             </div>
             <ul class="mt-4 z-20 relative text-white">
-                <li>Point 1</li>
-                <li>Point 2</li>
-                <li>Point 3</li>
-                <li>Point 4</li>
+                <li>Dokumentasi acara dengan 1 kamera</li>
+                <li>Video editing cut to cut</li>
+                <li>Desain grafis sederhana</li>
             </ul>
         </a>
 
@@ -32,10 +31,9 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black"></div> <!-- Dark overlay -->
             </div>
             <ul class="mt-4 z-20 relative text-white">
-                <li>Point 1</li>
-                <li>Point 2</li>
-                <li>Point 3</li>
-                <li>Point 4</li>
+                <li>Dokumentasi acara dengan 2 kamera dan fotografer</li>
+                <li>Video editing medium</li>
+                <li>Desain grafis medium</li>
             </ul>
         </a>
 
@@ -48,10 +46,10 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black"></div> <!-- Dark overlay -->
             </div>
             <ul class="mt-4 z-20 relative text-white">
-                <li>Point 1</li>
-                <li>Point 2</li>
-                <li>Point 3</li>
-                <li>Point 4</li>
+                <li>Dokumentasi acara dengan 3 kamera, fotografer, dan drone</li>
+                <li>Video editing profesional </li>
+                <li>Desain grafis custom premium </li>
+
             </ul>
         </a>
     </div>

@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-    <div class="container mx-auto mt-5 p-4">
+    <div class="container mx-auto mt-5 p-4 animate-appear">
         @auth
         @if(auth()->user()->isAdmin())
         <h1></h1>
@@ -45,26 +45,31 @@
 
         <!-- Success Message -->
         @if(session('success'))
-            <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+            <div class="bg-green-500 bg-opacity-30 text-gray-100 p-4 rounded mb-4 w-1/2 sm:w-fit md:w-1/2 mx-auto text-center" id="successMessage">
                 {{ session('success') }}
+                <br>
+                <button class="my-2 text-gray-100 text-opacity-50 hover:text-opacity-100 hover:underline" 
+                    onclick="dismissMessage('successMessage')">
+                    Dismiss
+                </button>
             </div>
         @endif
 
         <!-- Thank-You Message or Form -->
         @if($userReview)
-            <div class="bg-gradient-to-r from-gray-600 to-black bg-opacity-50 border text-white-800 p-4 rounded text-center">
-                <h4 class="text-xl font-semibold">Thank you for submitting your review!</h4>
-                <p><strong>Your Review:</strong></p>
-                <p>Rating: {{ $userReview->star_rating }} stars</p>
-                <p>{{ $userReview->comments }}</p>
+            <div class="border-2 border-gray-100 border-opacity-50 bg-gradient-to-r from-gray-700 to-black bg-opacity-50 text-white-800 p-4 rounded w-1/2 sm:w-fit mx-auto">
+                <h4 class="text-xl font-semibold m-4 text-center">Thank you for submitting your review!</h4>
+                <p class="m-2"><strong>Your Review:</strong></p>
+                <p class="m-2">Rating: {{ $userReview->star_rating }} stars</p>
+                <p class="m-2">{{ $userReview->comments }}</p>
 
                 @if(Auth::check() && Auth::id() == $userReview->user_id)
                     <div class="mt-3 flex justify-center space-x-4">
-                        <button class="bg-blue-500 text-white px-4 py-2 rounded"
+                        <button class="border-2 border-gray-100 border-opacity-50 text-gray-100 px-4 py-2 rounded transition ease-in-out delay-100 hover:bg-blue-500 hover:bg-opacity-50"
                                 onclick="openModal('editReviewModal{{ $userReview->id }}')">
                             Edit
                         </button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded"
+                        <button class="border-2 border-gray-100 border-opacity-50 text-gray-100 px-4 py-2 rounded transition ease-in-out delay-100 hover:bg-red-500 hover:bg-opacity-50"
                                 onclick="openModal('deleteReviewModal{{ $userReview->id }}')">
                             Delete
                         </button>
@@ -74,40 +79,46 @@
         @else
             <!-- Error Messages -->
             @if ($errors->any())
-                <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+                <div class="bg-red-500 bg-opacity-30 text-gray-100 p-4 rounded mb-4 w-1/2 sm:w-fit md:w-1/2 mx-auto text-center" id="successMessage">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                    <button class="my-2 text-gray-100 text-opacity-50 hover:text-opacity-100 hover:underline" 
+                        onclick="dismissMessage('errorMessage')">
+                        Dismiss
+                    </button>
                 </div>
             @endif
 
             @if(Auth::check() && Auth::user()->role !== 1)
                 <!-- Review Form -->
-                <form action="{{ route('review.store') }}" method="POST" class="space-y-4">
-                    @csrf
-                    <div>
-                        <label for="rating" class="block text-gray-700">Rating</label>
-                        <div class="star-rating">
-                            <input type="radio" id="rating-5" name="rating" value="5">
-                            <label for="rating-5">&#9733;</label>
-                            <input type="radio" id="rating-4" name="rating" value="4">
-                            <label for="rating-4">&#9733;</label>
-                            <input type="radio" id="rating-3" name="rating" value="3">
-                            <label for="rating-3">&#9733;</label>
-                            <input type="radio" id="rating-2" name="rating" value="2">
-                            <label for="rating-2">&#9733;</label>
-                            <input type="radio" id="rating-1" name="rating" value="1">
-                            <label for="rating-1">&#9733;</label>
+                <div class="rounded-lg border-2 bg-gray-800 border-gray-500 p-4 text-gray-100">
+                    <form action="{{ route('review.store') }}" method="POST" class="space-y-4">
+                        @csrf
+                        <div>
+                            <label for="rating" class="block">Rating</label>
+                            <div class="star-rating">
+                                <input type="radio" id="rating-5" name="rating" value="5">
+                                <label for="rating-5">&#9733;</label>
+                                <input type="radio" id="rating-4" name="rating" value="4">
+                                <label for="rating-4">&#9733;</label>
+                                <input type="radio" id="rating-3" name="rating" value="3">
+                                <label for="rating-3">&#9733;</label>
+                                <input type="radio" id="rating-2" name="rating" value="2">
+                                <label for="rating-2">&#9733;</label>
+                                <input type="radio" id="rating-1" name="rating" value="1">
+                                <label for="rating-1">&#9733;</label>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label for="comment" class="block text-gray-700">Your Review</label>
-                        <textarea id="comment" name="comment" class="w-full border rounded p-2 text-black" rows="4" placeholder="Write your review here..."></textarea>
-                    </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit Review</button>
-                </form>
+                        <div>
+                            <label for="comment" class="block text-gray-100">Your Review</label>
+                            <textarea id="comment" name="comment" class="w-full border rounded p-2 text-black" rows="4" placeholder="Write your review here..."></textarea>
+                        </div>
+                        <button type="submit" class="border-2 border-gray-100 border-opacity-50 text-gray-100 px-4 py-2 rounded transition ease-in-out delay-100 hover:bg-blue-500 hover:bg-opacity-50">Submit Review</button>
+                    </form>
+                </div>
             @elseif(Auth::check() && Auth::user()->role === 1)
                 <div class="bg-blue-100 text-blue-800 p-4 rounded text-center">
                     <p>As an administrator, you cannot submit reviews.</p>
@@ -117,7 +128,7 @@
 
     <!-- Display Reviews -->
     <div class="max-w-6xl mx-auto mt-10">
-        <h3 class="text-2xl font-bold text-center mb-8">Reviews from Other Users</h3>
+        <h3 class="text-3xl font-bold text-center mb-8">Reviews from Other Users</h3>
         
         @if($reviews->isEmpty())
             <p class="text-center text-gray-500">
@@ -133,12 +144,12 @@
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                 @foreach($reviews as $review)
-                    <div class="border bg-white rounded-lg shadow-lg p-6 transition-shadow hover:shadow-xl">
+                    <div class="border-2 border-gray-400 border-opacity-500 bg-gradient-to-br from-gray-600 to-black bg-opacity-50 text-gray-100 rounded-lg shadow-lg p-6 transition-shadow hover:shadow-xl">
                         <!-- Review Header -->
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h5 class="text-lg font-semibold text-gray-800">{{ $review->user->name }}</h5>
-                                <small class="text-gray-500">{{ $review->created_at->diffForHumans() }}</small>
+                                <h5 class="text-lg font-semibold">{{ $review->user->name }}</h5>
+                                <small class="text-gray-200">{{ $review->created_at->diffForHumans() }}</small>
                             </div>
                             <div class="flex text-yellow-400">
                                 @for($i = 1; $i <= 5; $i++)
@@ -156,14 +167,14 @@
                         </div>
 
                         <!-- Review Content -->
-                        <p class="text-gray-600 mb-4">{{ $review->comments }}</p>
+                        <p class="mb-4">{{ $review->comments }}</p>
 
                     </div>
 
                     <!-- Edit Modal -->
                     <div id="editReviewModal{{ $review->id }}" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50">
                         <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-8 w-full max-w-md">
-                            <h5 class="text-xl font-semibold mb-4">Edit Your Review</h5>
+                            <h5 class="text-xl text-gray-800 font-semibold mb-4">Edit Your Review</h5>
                             <form action="{{ route('review.update', $review->id) }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -210,8 +221,8 @@
 
                     <!-- Delete Modal -->
                     <div id="deleteReviewModal{{ $review->id }}" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50">
-                        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-8 w-full max-w-md">
-                            <h5 class="text-xl font-semibold mb-4">Delete Review</h5>
+                        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100  rounded-lg p-8 w-full max-w-md">
+                            <h5 class="text-xl font-semibold mb-4 text-gray-800">Delete Review</h5>
                             <p class="text-gray-600 mb-6">Are you sure you want to delete this review? This action cannot be undone.</p>
                             
                             <div class="flex justify-end space-x-2">
@@ -236,8 +247,19 @@
         @endif
     </div>
 
-    <!-- JavaScript for Modal and Star Rating -->
+    
     <script>
+        // JavaScript to delete error/success messages
+
+        function dismissMessage(messageID) {
+            const message = document.getElementById(messageID);
+            if (message) {
+                message.remove();
+            }
+        }
+
+        // JavaScript for Modal and Star Rating 
+
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
