@@ -22,7 +22,7 @@
             <label for="image" class="block text-sm font-medium mb-2">Change Image</label>
             <input 
                 type="file" 
-                class="w-full px-4 py-2 rounded-lg border border-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black" 
+                class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-black" 
                 id="image" 
                 name="image">
             <div class="mt-3">

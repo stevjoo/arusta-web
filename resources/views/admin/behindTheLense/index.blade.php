@@ -15,7 +15,7 @@
 @section('content')
 <div class="max-w-full mx-auto sm:px-0 lg:px-8 mt-5">
     <div class="bg-darkgray overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="sm:p-3 md:p-6 bg-darkgray border-b border-gray-200">
+        <div class="sm:p-3 md:p-6 bg-black">
             <div class="my-5 me-3 flex justify-end">
                 <a href="{{ route('admin-behind-the-lense.create') }}" class="px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-lg shadow transition duration-200">
                     Add New Photo
@@ -24,35 +24,35 @@
 
             <div class="overflow-x-auto">
                 <table class="min-w-full leading-normal">
-                    <thead>
+                    <thead class="bg-white">
                         <tr>
-                            <th scope="col" class="px-2 sm:px-5 py-3 bg-neutral-500 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
+                            <th scope="col" class="px-2 sm:px-5 py-3 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
                                 ID
                             </th>
-                            <th scope="col" class="px-2 sm:px-5 py-3 bg-neutral-500 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
+                            <th scope="col" class="px-2 sm:px-5 py-3 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
                                 Title
                             </th>
-                            <th scope="col" class="px-2 sm:px-5 py-3 bg-neutral-500 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
+                            <th scope="col" class="px-2 sm:px-5 py-3 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
                                 Image
                             </th>
-                            <th scope="col" class="px-2 sm:px-5 py-3 bg-neutral-500 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
+                            <th scope="col" class="px-2 sm:px-5 py-3 text-left text-xs sm:text-sm font-semibold text-black uppercase tracking-wider">
                                 Actions
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($photos as $photo)
-                        <tr>
-                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-200 bg-white/10 text-gray-300 text-sm">
+                        <tr class="odd:bg-neutral-800 even:bg-neutral-700">
+                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-500 text-gray-300 text-sm">
                                 {{ $photo->id }}
                             </td>
-                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-200 bg-white/10 text-gray-300 text-sm">
+                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-500 text-gray-300 text-sm">
                                 {{ $photo->title }}
                             </td>
-                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-200 bg-white/10 text-gray-300 text-sm">
-                                <img class="w-20 h-20 object-cover" src="{{ Storage::url($photo->image_path) }}" alt="Photo">
+                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-500 text-gray-300 text-sm">
+                                <img class="w-20 h-20 object-cover" src="{{ Storage::url($photo->image_path) }}" alt="Behind the Lense Photo">
                             </td>
-                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-200 bg-white/10 text-gray-300 text-sm">
+                            <td class="px-2 sm:px-5 py-2 sm:py-5 border-b border-gray-500 text-gray-300 text-sm">
                                 <div class="flex flex-wrap sm:gap-2">
                                     <a href="{{ route('admin-behind-the-lense.show', $photo->id) }}" class="px-3 py-2 rounded-lg bg-green-600 hover:bg-green-800 text-white transition duration-200 text-xs sm:text-sm">
                                         View

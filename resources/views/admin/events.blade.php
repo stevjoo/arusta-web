@@ -14,14 +14,14 @@
 
 @section('content')
 <div class="mt-4 mx-auto sm:px-6 lg:px-8">
-    <div class="overflow-hidden sm:rounded-lg">
-        <div class="p-6">
+    <div class="bg-darkgray overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="sm:p-3 md:p-6 bg-black">
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-neutral-500">
+                <table class="min-w-full leading-normal">
+                    <thead class="bg-white">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                                # 
+                                ID
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Title
@@ -44,41 +44,39 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Status
                             </th>
-                            
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                 Actions
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y bg-white/10 divide-gray-200">
+                    <tbody>
                         @foreach ($events as $index => $event)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">
+                        <tr class="odd:bg-neutral-800 even:bg-neutral-700">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 font-medium text-gray-300">
                                 {{ $index + 1 }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->title }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->user->name }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->user->email }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->start_date }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->end_date }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->category }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 text-gray-300">
                                 {{ $event->status }}
                             </td>
-                            
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm border-b border-gray-500 font-medium">
                                 <a href="{{ route('events.edit', $event->id) }}" class="px-3 py-2.5 me-2 rounded-lg bg-blue-600 text-white hover:bg-blue-800">Edit</a>
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="inline">
                                     @csrf

@@ -18,7 +18,7 @@
             <div class="p-6">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-neutral-500">
+                        <thead class="bg-white">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Name
@@ -36,7 +36,7 @@
                         </thead>
                         <tbody class="divide-y bg-white/10 divide-gray-200 h-56">
                             @foreach ($users as $user)
-                            <tr>
+                            <tr class="odd:bg-neutral-800 even:bg-neutral-700">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">
                                     {{ $user->name }}
                                 </td>
