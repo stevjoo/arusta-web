@@ -13,10 +13,35 @@
 @endsection
 
 @section('content')
-<div class="flex justify-center gap-5 mt-24">
-    <a class="bg-darkgray px-32 py-56 rounded-xl hover:bg-darkgray/75 transition duration-200" href="./admin-behind-the-lense">Behind the Lense</a>
-    <a class="bg-darkgray px-32 py-56 rounded-xl hover:bg-darkgray/75 transition duration-200" href="./admin-photography">Photography</a>
-    <a class="bg-darkgray px-32 py-56 rounded-xl hover:bg-darkgray/75 transition duration-200" href="./admin-graphic-design">Graphic Design</a>
-</div>
+<div class="flex justify-center gap-6 mt-24">
+    <!-- Behind the Lense -->
+    <a href="./admin-behind-the-lense" class="relative block px-44 py-80 rounded-xl overflow-hidden group">
+        <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out" style="background-image: url('/asset/AdminBPG/behindthelense.webp');"></div>
+        </div>
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <span class="text-2xl font-bold text-white transition-all duration-300">Behind the Lense</span>
+        </div>
+    </a>
 
+    <!-- Photography -->
+    <a href="./admin-photography" class="relative block px-44 py-80 rounded-xl overflow-hidden group">
+        <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out" style="background-image: url('/asset/AdminBPG/photography.webp');"></div>
+        </div>
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <span class="text-2xl font-bold text-white transition-all duration-300">Photography</span>
+        </div>
+    </a>
+
+    <!-- Graphic Design -->
+    <a href="./admin-graphic-design" class="relative block px-44 py-80 rounded-xl overflow-hidden group">
+        <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out" style="background-image: url('/asset/AdminBPG/graphicdesign.webp');"></div>
+        </div>
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <span class="text-2xl font-bold text-white transition-all duration-300">Graphic Design</span>
+        </div>
+    </a>
+</div>
 @endsection
