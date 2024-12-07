@@ -3,7 +3,7 @@
 @section('title', 'ArustaID')
 
 @section('content')
-    <div class="animate-appear">
+<div class="animate-appear bg-black">
        <!-- Hero Section -->
 <!-- Hero Section -->
 <div class="relative bg-cover bg-center h-screen" style="background-image: url('{{ asset('storage/photo-1471341971476-ae15ff5dd4ea.jpg') }}');">
@@ -27,16 +27,14 @@
             </p>
         </div>
 </div>
-<!-- Our Clients Section -->
-<div class="bg-black text-white py-12">
-    <h2 class="text-3xl font-bold mb-8 text-center">Our Clients</h2>
-    <!-- Add your client logos here -->
+<div class="bg-black text-white">
+    <h2 class="text-3xl font-bold text-center">Our Clients</h2>
 </div>
 
         
 
         <!-- Our Client Section -->
-        <div class="w-full relative mt-12">
+        <div class="w-full relative mt-12 mb-16">
             
 
             <!-- FADE EFFECT (Gradient Overlay) -->
