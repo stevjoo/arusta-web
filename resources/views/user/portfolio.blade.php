@@ -3,7 +3,7 @@
 @section('title', 'Portfolio')
 
 @section('content')
-<div class="container mx-auto py-10 text-center">
+<div class="motion-preset-focus container mx-auto py-10 text-center">
     <h1 class="text-2xl md:text-5xl tracking-[.34em] text-white font-bold mb-10">Our Portfolio</h1>
 
     <div class="grid px-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">

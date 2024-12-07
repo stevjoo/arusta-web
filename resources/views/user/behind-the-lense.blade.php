@@ -3,7 +3,7 @@
 @section('title', 'Behind the Lense')
 
 @section('content')
-<div class="bg-black min-h-screen flex flex-col items-center">
+<div class="motion-preset-focus bg-black min-h-screen flex flex-col items-center">
     <!-- Header -->
     <div class="text-center py-10">
         <h1 class="text-2xl md:text-5xl tracking-[.34em] text-white font-bold">Behind The Lense</h1>
@@ -25,7 +25,17 @@
 </div>
 
 <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
-    <div class="relative">
+    <div class="motion-scale-in-[0.5]
+motion-translate-x-in-[-25%]
+motion-translate-y-in-[25%]
+motion-opacity-in-[0%]
+motion-rotate-in-[-10deg]
+motion-blur-in-[5px]
+motion-duration-[0.00s]
+motion-duration-[0.70s]/scale
+motion-duration-[0.35s]/opacity
+motion-duration-[0.34s]/blur motion-delay-[0.17s]/blur
+    relative">
         <img id="modalImage" src="" alt="Photo" class="max-w-[250px] max-h-[250px] md:max-w-[500px] md:max-h-[500px] rounded-lg">
         <div>
             <button onclick="closeModal()" class="bg-black/75 hover:bg-black transition duration-200 rounded-full px-2 absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>

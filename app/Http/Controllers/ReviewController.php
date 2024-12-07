@@ -8,9 +8,38 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    public function form_view()
+    {
+        // Get all reviews with user information
+        $reviews = Review::with('user')->latest()->get();
+        
+        // Calculate statistics
+        $averageRating = $reviews->avg('star_rating') ?? 0;
+        $totalReviews = $reviews->count();
+        
+        // Get rating counts for each star level
+        $ratingCounts = array_fill(1, 5, 0); // Initialize with zeros
+        foreach ($reviews as $review) {
+            $ratingCounts[$review->star_rating]++;
+        }
+        
+        // Don't show personal review for admin users
+        $userReview = Auth::check() && Auth::user()->role !== 1 
+            ? Review::where('user_id', Auth::id())->first() 
+            : null;
+
+        return view('user/testimoni', compact(
+            'reviews',
+            'userReview',
+            'averageRating',
+            'totalReviews',
+            'ratingCounts'
+        ));
+    }
+
     public function reviewstore(Request $request)
-{
-    // Check if user is admin
+    {
+        // Check if user is admin
         if (Auth::user()->role === 1) {
             return redirect()->back()->with('error', 'Administrators are not allowed to submit reviews.');
         }
@@ -28,16 +57,6 @@ class ReviewController extends Controller
         $review->save();
 
         return redirect()->back()->with('success', 'Review added successfully!');
-    }
-
-    public function form_view()
-    {
-        $reviews = Review::with('user')->latest()->get();
-        // Don't show personal review for admin users
-        $userReview = Auth::check() && Auth::user()->role !== 1 
-            ? Review::where('user_id', Auth::id())->first() 
-            : null;
-        return view('user/testimoni', compact('reviews', 'userReview'));
     }
 
     public function edit(Request $request, $id)
@@ -79,7 +98,7 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
         
-        // Check if user owns this review
+        // Check if user owns this review or is admin
         if (Auth::id() !== $review->user_id && Auth::user()->role !== 1) {
             return redirect()->back()->with('error', 'Unauthorized action.');
         }
@@ -87,5 +106,4 @@ class ReviewController extends Controller
         $review->delete();
         return redirect()->back()->with('success', 'Review deleted successfully!');
     }
-    
 }

@@ -20,8 +20,8 @@ export default {
             animation: {
                 'scroll-auto': 'scrollAuto 90s linear infinite',
                 appear: "appear 0.3s ease-in-out"
-              },
-              keyframes: {
+            },
+            keyframes: {
                 appear: {
                     "0%": {
                         opacity: "0",
@@ -31,13 +31,15 @@ export default {
                     },
                 },
                 scrollAuto: {
-                  '0%': { transform: 'translateX(0)' },
-                  '100%': { transform: 'translateX(-100%)' },
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-100%)' },
                 }
-              },
+            },
         },
     },
 
-    plugins: [forms],
-    
+    plugins: [
+        forms,
+        require('tailwindcss-motion') // Add the plugin here
+    ],
 };

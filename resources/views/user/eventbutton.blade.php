@@ -3,7 +3,7 @@
 @section('title', 'Event')
 
 @section('content')
-<div class="relative w-full h-screen">
+<div class="motion-preset-focus relative w-full h-screen">
     <!-- Carousel container -->
     <div x-data="{ current: 0, images: [
             '/asset/EventButton/1.webp', 

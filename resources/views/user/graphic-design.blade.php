@@ -3,7 +3,7 @@
 @section('title', 'Graphic Design')
 
 @section('content')
-<div class="bg-black min-h-screen flex flex-col items-center">
+<div class="motion-preset-focus bg-black min-h-screen flex flex-col items-center">
     <!-- Header -->
     <div class="text-center py-10">
         <h1 class="text-2xl md:text-5xl tracking-[.34em] text-white font-bold">Our Portfolio</h1>

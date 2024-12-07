@@ -65,8 +65,9 @@
         }
     </style>
 </head>
-<body class="bg-black">
-    <div class="container py-5 px-2">
+<body class="motion-preset-focus bg-black">
+    
+<div class="container py-5 px-2">
         <a href="./event" id="link" class="fs-5">← Back</a>
         <div class="row">
             <div class="col-12 mt-3">
