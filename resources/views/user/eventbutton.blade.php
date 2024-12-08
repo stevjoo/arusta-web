@@ -31,10 +31,12 @@
         <!-- Content centered -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
             <!-- Heading -->
-            <h1 class="text-white text-5xl font-bold mb-4">Reserve an Event with Us</h1>
+            <h1 class="motion-preset-shrink text-white text-5xl font-bold mb-4">Reserve an Event with Us</h1>
             
             <!-- Button -->
-            <a href="./events" class="inline-block px-6 py-3 bg-darkgray border-2 border-white text-gray-100 font-semibold rounded-md hover:bg-opacity-50 transition duration-300 ease-in-out">
+            <a href="./events" class="
+            motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.00s] motion-duration-[0.53s]/scale motion-duration-[0.35s]/opacity motion-duration-[0.35s]/blur motion-ease-out-cubic
+            inline-block px-6 py-3 bg-darkgray border-2 border-white text-gray-100 font-semibold rounded-md hover:bg-opacity-50 transition duration-300 ease-in-out">
                 <span>{{ __('Event Schedule') }}</span>   
             </a>
         </div>

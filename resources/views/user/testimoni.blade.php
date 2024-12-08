@@ -200,7 +200,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
                     @foreach($reviews as $index => $review)
-                    <div class="motion-preset-shake bg-[#1c1c1c] rounded-lg overflow-hidden" style="animation-delay: {{ $index * 150 }}ms;">
+                    <div class="motion-preset-shrink bg-[#1c1c1c] rounded-lg overflow-hidden" style="animation-delay: {{ $index * 150 }}ms;">
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-4">
                                 <div>

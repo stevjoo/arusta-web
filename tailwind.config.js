@@ -18,7 +18,7 @@ export default {
                 darkgray: "#2B2B2B",
             },
             animation: {
-                'scroll-auto': 'scrollAuto 90s linear infinite',
+                'scroll-auto': 'scrollAuto 120s linear infinite',
                 appear: "appear 0.3s ease-in-out"
             },
             keyframes: {
