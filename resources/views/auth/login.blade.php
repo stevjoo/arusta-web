@@ -1,3 +1,5 @@
+<title>Login</title>
+
 <x-guest-layout>
     <!-- Session Status -->
     <form method="POST" action="{{ route('login') }}" class="space-y-6">
@@ -23,7 +25,7 @@
         <!-- Remember Me -->
         <div class="flex mt-4 justify-between">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-darkgray shadow-sm focus:ring-white" name="remember">
                 <span class="ms-2 text-sm text-white">{{ __('Remember me') }}</span>
             </label>
 

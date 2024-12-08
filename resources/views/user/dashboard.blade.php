@@ -6,7 +6,7 @@
 <div class="animate-appear bg-black">
        <!-- Hero Section -->
 <!-- Hero Section -->
-<div class="relative bg-cover bg-center h-screen" style="background-image: url('{{ asset('storage/photo-1471341971476-ae15ff5dd4ea.jpg') }}');">
+<div class="relative bg-cover bg-center h-screen" style="background-image: url('{{ url('asset/Dashboard/photo-1471341971476-ae15ff5dd4ea.jpg') }}');">
     <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-70"></div>
     
     <!-- Bottom fade effect -->

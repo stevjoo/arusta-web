@@ -1,3 +1,5 @@
+<title>Confirm Password</title>
+
 <x-guest-layout>
     <div class="mb-4 mt-16 text-sm text-gray-200">
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
