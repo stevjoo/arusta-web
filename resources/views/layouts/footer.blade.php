@@ -53,7 +53,7 @@
                 </a>
                 <a
                 target="_blank"
-                href=":https://www.facebook.com/wayanar"
+                href="https://www.facebook.com/wayanar"
                 class="bg-neutral-700 hover:bg-neutral-800 transition duration-200 w-9 h-9 rounded-full border border-white flex justify-center items-center"
                 >
                 <svg

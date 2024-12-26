@@ -10,8 +10,9 @@ use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('user/dashboard');
+    return view('user/dashboard'); // No need for '.blade.php'
 })->name('dashboard');
+
 
 Route::get('/event', function () {
     return view('user/eventbutton');
